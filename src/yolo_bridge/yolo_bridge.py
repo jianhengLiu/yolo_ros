@@ -1,3 +1,5 @@
+import sys
+import os
 import rospy
 import actionlib
 import ros_numpy as rnp
@@ -10,14 +12,9 @@ class Ros2Yolo:
     def __init__(self, node_name="demo_server", name="yolo"):
         self.isaction = rospy.get_param("yolov5/action", False)
         # load param
-        self.yolo5_path = rospy.get_param("yolov5/path", None)
         self.model = rospy.get_param("yolov5/model", "yolov5s")
-        self.weight = rospy.get_param("yolov5/weight", None)
         self.device = rospy.get_param("yolov5/device", "gpu")
         self.img_size = rospy.get_param("yolov5/img_size", 640)
-        self.valid = (
-            False if (self.yolo5_path is None) and (self.weight is None) else True
-        )
 
         self.stride = 32
         self.half = True if self.device == "gpu" else False
@@ -41,19 +38,16 @@ class Ros2Yolo:
             print("service mode :", name + "_service")
 
     def load_model(self):
-        if not self.valid:
-            return False
-
         self.device = torch.device(
             "cuda:0" if (self.device != "cpu" and torch.cuda.is_available()) else "cpu"
         )
-        if self.yolo5_path is None:
-            self.model = torch.hub.load("ultralytics/yolov5", "yolov5s")
-            self.model = self.model.cuda() if self.device != "cpu" else self.model
-        else:
-            self.model = attempt_load(
-                self.weight, self.device, yolo_path=self.yolo5_path
-            )
+        self.model = torch.hub.load(
+            sys.path[0] + "/../Thirdparty/yolov5",
+            "custom",
+            source="local",
+            path=sys.path[0] + "/../model/yolov5s.pt",
+        )
+        self.model = self.model.cuda() if self.device != "cpu" else self.model
         self.stride = self.model.stride
         self.img_size = check_img_size(self.img_size, s=self.stride)
         self.half = self.device.type != "cpu"
@@ -89,7 +83,7 @@ class Ros2Yolo:
         img = img.half() if self.half else img  # gpu才支持half()->float16
         img /= 255.0
         with torch.no_grad():
-            pred = self.model(img) 
+            pred = self.model(img)
             # list of detections, on (n,6) tensor per image [xyxy, conf, cls]
             pred = non_max_suppression(pred, 0.25, 0.45)
 
