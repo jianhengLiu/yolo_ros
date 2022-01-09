@@ -1,7 +1,0 @@
-<launch>
-    <rosparam file="$(find yolo_ros)/config/config.yaml" command="load"/>
-    <node name="demo_server" pkg="yolo_ros" type="demo_service_server.py" output="screen"/>
-
-    <node name="service_client" pkg="yolo_ros" type="service_client" output="screen">
-    </node>
-</launch>

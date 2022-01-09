@@ -1,25 +1,21 @@
 # YOLO-ROS
 
-**YOLO-ROS for NVIDIA**
+**YOLO-ROS for HUAWEI ATLAS200**
 
-**YOLO-ROS for HUAWEI ATLAS200, please checkout for branch `atlas200`**
-
-Modified from [ros-yolov5](https://github.com/OuyangJunyuan/ros-yolov5), originated from [yolov5](https://github.com/ultralytics/yolov5)
+**YOLO-ROS for NVIDIA, please checkout for branch `master`**
 
 1. clone `YOLO-ROS`
    ```
    cd {YOUR_WORKSPACE}/src
    git clone https://github.com/jianhengLiu/yolo_ros.git
+   git checkout atlas200
    ```
 
-2. install python dependencies
-```
-   sudo apt install ros-melodic-ros-numpy
-   pip3 install --upgrade pip
-   pip3 install -r yolo_ros/requirements.txt`
-```
-3. `catkin_make`
+2. `catkin_make`
 
-4. `roslaunch yolo_ros yolo_service.launch`
+3. Download pre-trained model and put it in `yolo_ros/model`
+   * 百度网盘： https://pan.baidu.com/s/1m0lapSFk8KG5Z1Jo5T2VFQ  密码: wgs5
+
+4. `roslaunch yolo_ros yolo_atlas_nodelet.launch`
 
 5. play your rosbag.
