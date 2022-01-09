@@ -1,0 +1,9 @@
+**/build
+**/devel
+**/.idea
+**/.vscode
+**/cmake-build-debug
+**/.cache
+**/__pycache__
+
+!.gitignore

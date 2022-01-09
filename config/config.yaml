@@ -1,0 +1,5 @@
+yolov5:
+  action: False
+  weight: ../../model/yolov5s.pt
+  device: gpu
+  img_size: 640
