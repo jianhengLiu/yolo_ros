@@ -23,10 +23,3 @@ Modified from [ros-yolov5](https://github.com/OuyangJunyuan/ros-yolov5), origina
 4. `roslaunch yolo_ros yolo_service.launch`
 
 5. play your rosbag.
-
-## Possible problem
-
-catkin error: 
-`yolo_ros/src/service_client.cpp:19:10: fatal error: yolo_ros/yolo.h: No such file or directory`
-
-Just run `catkin_make` a second time.

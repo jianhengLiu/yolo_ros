@@ -51,9 +51,11 @@ catkin_package(
 )
 
 include_directories(
-        ${catkin_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## target
 add_executable(service_client src/service_client.cpp)
 target_link_libraries(service_client ${catkin_LIBRARIES} ${OpenCV_LIBS} )
+add_dependencies(service_client yolo_ros_generate_messages_cpp)
+
