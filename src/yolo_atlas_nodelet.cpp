@@ -83,7 +83,7 @@ namespace yolo_atlas_nodelet_ns
             uint32_t kModelWidth = 416;
             uint32_t kModelHeight = 416;
 
-            pkg_path = ros::package::getPath("yolo_atlas_ros");
+            pkg_path = ros::package::getPath("yolo_ros");
             model_path = pkg_path + "/model/yolov3.om";
 
             detect = new ObjectDetect(pkg_path.c_str(), model_path.c_str(), kModelWidth, kModelHeight);

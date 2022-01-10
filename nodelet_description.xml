@@ -1,5 +1,5 @@
 <library path="lib/libyolo_atlas_nodelet">
-    <class  name="yolo_atlas_ros/YoloAtlasNodelet" type="yolo_atlas_nodelet_ns::YoloAtlasNodelet"  base_class_type="nodelet::Nodelet">
+    <class  name="yolo_ros/YoloAtlasNodelet" type="yolo_atlas_nodelet_ns::YoloAtlasNodelet"  base_class_type="nodelet::Nodelet">
         <description>yolo_atlas_nodelet</description>
     </class>
 </library>

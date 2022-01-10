@@ -1,11 +1,9 @@
 <launch>
-    <arg name="manager_name" default="nodelet_manager"/>
+    <arg name="manager_name" default="nodelet_manager" />
 
-    <node pkg="nodelet" type="nodelet" name="$(arg manager_name)" args="manager" output="screen"/>
+    <node pkg="nodelet" type="nodelet" name="$(arg manager_name)" args="manager" output="screen" />
 
-    <node pkg="nodelet" type="nodelet" name="Compressedimg2ImgNodelet" args="load compressedimg2img/Compressedimg2ImgNodelet $(arg manager_name)" output="screen">
-    </node>
+    <node pkg="nodelet" type="nodelet" name="Compressedimg2ImgNodelet" args="load compressedimg2img/Compressedimg2ImgNodelet $(arg manager_name)" output="screen"></node>
 
-     <node pkg="nodelet" type="nodelet" name="YoloAtlasNodelet" args="load yolo_atlas_ros/YoloAtlasNodelet $(arg manager_name)" output="screen">
-    </node>
+    <node pkg="nodelet" type="nodelet" name="YoloAtlasNodelet" args="load yolo_ros/YoloAtlasNodelet $(arg manager_name)" output="screen"></node>
 </launch>
