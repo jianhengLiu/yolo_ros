@@ -1,7 +1,8 @@
 # YOLO-ROS
 
-**YOLO-ROS for NVIDIA**
+**YOLO-ROS for PyTorch**
 
+**YOLO-ROS for TensorRT, please checkout for branch `tensorrt`**
 **YOLO-ROS for HUAWEI ATLAS200, please checkout for branch `atlas200`**
 
 Modified from [ros-yolov5](https://github.com/OuyangJunyuan/ros-yolov5), originated from [yolov5](https://github.com/ultralytics/yolov5)
