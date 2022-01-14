@@ -2,7 +2,8 @@
 
 **YOLO-ROS for HUAWEI ATLAS200**
 
-**YOLO-ROS for NVIDIA, please checkout for branch `master`**
+**YOLO-ROS for PyTorch, please checkout for branch `master`**
+**YOLO-ROS for TensorRT, please checkout for branch `tensorrt`**
 
 1. clone `YOLO-ROS`
    ```
