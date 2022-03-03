@@ -18,7 +18,7 @@ Modified from [ros-yolov5](https://github.com/OuyangJunyuan/ros-yolov5), origina
 ```
    sudo apt install ros-melodic-ros-numpy
    pip3 install --upgrade pip
-   pip3 install -r yolo_ros/requirements.txt`
+   pip3 install -r yolo_ros/requirements.txt
 ```
 3. `catkin_make`
 
