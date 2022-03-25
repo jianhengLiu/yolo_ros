@@ -26,8 +26,14 @@ Modified from [tensorrtx](https://github.com/wang-xinyu/tensorrtx)
    pip3 install Cython matplotlib==3.2.2 numpy==1.18.5 Pillow PyYAML==5.4.1 scipy==1.5.4 tensorboard==1.15.0 tqdm==4.58.0 seaborn==0.11.1 pandas thop pycocotools==2.0.2
    # if you are running on xavier, please not directly install torch by pip and refer to `Possible Problems on NVIDIA Jetson AGX Xavier` section
    pip3 install torch==1.7.0 torchvision==0.8.1
+   pip3 install seaborn matplotlib pandas requests
    ```
-3. generate .wts from pytorch with .pt, or download .wts from model zoo
+   
+3. CUDA, TensrotRT etc.: 
+   - https://github.com/wang-xinyu/tensorrtx/blob/master/tutorials/install.md
+   - https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-tar
+
+4. generate .wts from pytorch with .pt, or download .wts from model zoo
 
    ```
    cp Thirdparty/yolov5_tensorrtx/gen_wts.py Thirdparty/yolov5
@@ -35,7 +41,7 @@ Modified from [tensorrtx](https://github.com/wang-xinyu/tensorrtx)
    python3 Thirdparty/yolov5/gen_wts.py -w Thirdparty/yolov5/yolov5n.pt -o Thirdparty/yolov5_tensorrtx/build/yolov5n.wts
    ```
 
-4. build tensorrtx/yolov5 and run
+5. build tensorrtx/yolov5 and run
 
    ```
    cd Thirdparty/yolov5_tensorrtx/build
@@ -44,7 +50,7 @@ Modified from [tensorrtx](https://github.com/wang-xinyu/tensorrtx)
    sudo ./yolov5 -s yolov5n.wts yolov5n.engine n
    ```
 
-5. roslaunch
+6. roslaunch
 
    ```
    cd {YOUR_WORKSPACE}/src

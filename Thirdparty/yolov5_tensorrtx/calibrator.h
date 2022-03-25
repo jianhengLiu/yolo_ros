@@ -18,7 +18,7 @@ public:
 
     virtual ~Int8EntropyCalibrator2();
     int getBatchSize() const TRT_NOEXCEPT override;
-    bool getBatch(void* bindings[], const char* names[], int nbBindings) TRT_NOEXCEPT override;
+    //bool getBatch(void* bindings[], const char* names[], int nbBindings) TRT_NOEXCEPT override;
     const void* readCalibrationCache(size_t& length) TRT_NOEXCEPT override;
     void writeCalibrationCache(const void* cache, size_t length) TRT_NOEXCEPT override;
 
