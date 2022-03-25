@@ -54,14 +54,66 @@ Modified from [tensorrtx](https://github.com/wang-xinyu/tensorrtx)
    ```
 
 
-### Possible Problems on NVIDIA Jetson AGX Xavier
+
+## *Possible Problems on NVIDIA Jetson AGX Xavier*
 
 * JetPack 4.6
 
+### 1. cv_bridge
 
-**1. Python**
+```
+Project 'cv_bridge' specifies '/usr/include/opencv' as an include dir, which is not found.
+```
 
-**1.2. Illegal instruction(cpre dumped)**
+ROS melodic's default installed `cv_bridge 1.13.0` depend on `opencv 3.2`, while the default opencv version in `Jetpack 4.6` is `4.1.1`
+
+`sudo gedit /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake`
+
+change `line 94` and `line 96`
+from 
+```
+if(NOT "include;/usr/include;/usr/include/opencv " STREQUAL " ")
+  set(cv_bridge_INCLUDE_DIRS "")
+  set(_include_dirs "include;/usr/include;/usr/include/opencv")
+```
+to
+```
+if(NOT "include;/usr/include;/usr/include/opencv4/opencv2 " STREQUAL " ")
+  set(cv_bridge_INCLUDE_DIRS "")
+  set(_include_dirs "include;/usr/include;/usr/include/opencv4/opencv2")
+```
+
+change `line 119`
+from 
+```
+set(libraries "cv_bridge;/usr/lib/aarch64-linux-gnu/libopencv_core.so.3.2.0;/usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.3.2.0;/usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.3.2.0")
+```
+to
+```
+set(libraries "cv_bridge;/usr/lib/aarch64-linux-gnu/libopencv_core.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.1.1;/usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.1.1")
+```
+
+
+or, if you reinstall an other version of opencv, change it to 
+```
+# find the path by 
+# sudo find / -name libopencv_core.so.*
+# sudo find / -name libopencv_imgproc.so.*
+# sudo find / -name libopencv_imgcodecs.so.*
+
+set(libraries "cv_bridge;/usr/local/lib/libopencv_core.so.4.5.5;/usr/local/lib/libopencv_imgproc.so.4.5.5;/usr/local/lib/libopencv_imgcodecs.so.4.5.5")
+```
+
+```
+cd {YOUR_WORKSPACE}
+rm -rf build devel
+catkin_make
+```
+
+
+### 2. Python
+
+**2.1. Illegal instruction(cpre dumped)**
 ```
 echo "export OPENBLAS_CORETYPE=ARMV8" >> ~/.zshrc
 source ~/.zshrc
@@ -70,7 +122,7 @@ source ~/.zshrc
 # source ~/.bashrc
 ```
 
-**1.3. PyTorch**
+**2.2. PyTorch**
 
 Download  [PyTorch v1.7.0 pip wheel](https://nvidia.box.com/shared/static/cs3xn3td6sfgtene6jdvsxlr366m2dhq.whl)
 
