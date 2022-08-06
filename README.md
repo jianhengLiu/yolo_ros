@@ -18,6 +18,9 @@ Modified from [ros-yolov5](https://github.com/OuyangJunyuan/ros-yolov5), origina
 ```
    sudo apt install ros-melodic-ros-numpy
    pip3 install --upgrade pip
+   # conda create -n dvins python=3.6
+   # conda activate dvins
+   pip3 install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu113
    pip3 install -r yolo_ros/requirements.txt
 ```
 3. `catkin_make`
